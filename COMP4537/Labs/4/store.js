@@ -19,6 +19,7 @@ function addDefinition() {
 
         // event listener for POST request
         xhr.onload = function() {
+            // readystate 4 is req finished and response ready
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     document.getElementById('storeMyResult').textContent = 'Stored defintion!'
