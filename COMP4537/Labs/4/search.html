@@ -12,13 +12,46 @@
 
     <br>
 
-    <button onclick="searchForDef()">Search me!</button>
+    <button onclick="getAll()">Search me!</button>
+    <!-- <button onclick="searchForDef()">Search me!</button> -->
 
     <div id="results">
         
     </div>
 
-    <script src="./search.js"></script>
+    <script>
+        async function getAll(){
+            fetch("http://localhost:5500/api/definitions/", {
+                method: "GET"
+            })
+                .then(res => res.json())
+                // once it works change the json to json[word]
+                // rid console for document.getelementbyID('results').innerHTML = json[word] <- this is ajax
+                .then(json => console.log(json))
+        } 
+    </script>
+
+    <!-- <script>
+        function getAll() {
+            const xhttp = new XMLHttpRequest();
+            const endPointRoot = "http://localhost:5500/"
+            let word = document.getElementById('searchForInput')
+            let params = `?word=${word.value}&`
+            let resource = "definitions/"
+            if (word.value != "") {
+                const url = endPointRoot + resource + params;
+                xhttp.open("GET", url, true)
+                xhttp.send()
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("results").innerHTML = this.responseText
+                    }
+                }
+            }
+        }
+    </script> -->
+
+    <!-- <script src="./search.js"></script> -->
     
 </body>
 </html>

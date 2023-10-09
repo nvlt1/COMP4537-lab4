@@ -20,13 +20,50 @@
     <br>
     <br>
     <!-- submit button -->
-    <button onclick="addDefinition()">Click to add defintion</button>
+    <button onclick="post()">Click to add defintion</button>
+    <!-- <button onclick="addDefinition()">Click to add defintion</button> -->
 
     <div id="storeMyResult">
 
     </div>
-    
 
-    <script src="./store.js"></script>
+    <script>
+        const word  = document.getElementById('wordToInput').value
+        const definition = document.getElementById('defintionToInput').value
+        async function post(){
+            fetch(`http://localhost:5500/api/definitions/?word=${word}&definitions=${definition}`, {
+                method: "POST"
+            })
+                .then(res => res.json())
+                .then(json => console.log(json))
+        } 
+    </script>
+    
+    <!-- <script>
+        function post() {
+            const xhttp = new XMLHttpRequest();
+            const endPointRoot = "http://localhost:5500/"
+            let word = document.getElementById('wordToInput')
+            let definition = document.getElementById('defintionToInput')
+            let params = `?word=${word.value}&definition=${definition.value}`
+            let resource = "definitions/"
+            if (word.value != "" && definition.value != ""){
+                xhttp.open("POST", endPointRoot + resource, true)
+                xhttp.setRequestHeader(
+                    "Content-Type",
+                    "application/x-www-form-urlencoded"
+                );
+                xhttp.send(params)
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(this.responseText)
+                        document.getElementById('storeMyResult').innerHTML = this.responseText
+                    }
+                }
+            }
+        }
+    </script> -->
+
+    <!-- <script src="./store.js"></script> -->
 </body>
 </html>
