@@ -14,6 +14,7 @@ function searchForDef() {
     if (validSearch(word)) {
         const xhr = new XMLHttpRequest();
         // url end-point: /search?word=${word}
+        // before 
         xhr.open('GET', `/search?word=${word}`, true)
 
         // event listener for completed request
