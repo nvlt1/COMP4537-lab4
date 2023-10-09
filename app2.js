@@ -1,7 +1,7 @@
 const http = require('http')
 const url = require('url')
 const fs = require('fs')
-const port = 5500
+const port = 8080
 
 http.createServer((req, res) => {
     const q = url.parse(req.url, true)
